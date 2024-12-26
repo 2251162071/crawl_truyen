@@ -1,0 +1,3 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+14:44:38	119/119	---MCZ	200	added ('OK')	text/plain	etag:W/%228c-61b0e79dfb7b6%22	https://truyenfull.io/robots.txt		(from )
+14:44:39	59320/59320	---MCZ	200	added ('OK')	text/html	date:Thu,%2026%20Dec%202024%2007:44:38%20GMT	https://truyenfull.io/de-vuong-thu/chuong-2/	httrack_output/de-vuong-thu_chuong-2/truyenfull.io/de-vuong-thu/chuong-2/index.html	(from )
