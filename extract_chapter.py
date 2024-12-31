@@ -15,7 +15,7 @@ def process_truyen(root_dir, sql_file):
                         if file == "index.html":
                             index_path = os.path.join(dirpath, file)
                             try:
-                                with open(index_path, "r", encoding="utf-8") as html_file:
+                                with open(index_path, "r", encoding="utf-8", errors='ignore') as html_file:
                                     soup = BeautifulSoup(html_file, "html.parser")
 
                                     # Lấy title, số chương, và nội dung
@@ -46,15 +46,39 @@ def process_truyen(root_dir, sql_file):
                                 print(f"Lỗi khi xử lý file {index_path}: {e}")
                                 continue
 
+def balance_single_quotes(content):
+    # Pattern: Match groups of single quotes
+    pattern = r"'{1,}"
+    
+    def replace_quotes(match):
+        # Get the matched single quotes
+        quotes = match.group(0)
+        # If the number of quotes is odd, add one more
+        if len(quotes) % 2 != 0:
+            return quotes + "'"
+        return quotes
+    
+    # Use re.sub with the custom replace function
+    return re.sub(pattern, replace_quotes, content)
+
+def replace_single_quotes(content):
+    # Pattern: Match a substring starting with a space, letter, or digit followed by a single quote
+    pattern = r"(?<=[^'])'"
+    # Replace with two single quotes
+    return re.sub(pattern, "''", content)
+
 # Hàm để lưu hoặc cập nhật dữ liệu vào file SQL
 def save_to_sql(sql_file, story_chapter, title, chapter_number, content, story_id):
 # Chuyển đổi \n thành <br> để hiển thị đúng trong trình duyệt
     # content_html = content.replace("\n", "<br>")
     content = str(content) if content else "<p>Nội dung không có</p>"
-    safe_content = content.replace("'", "''")
+    safe_content = balance_single_quotes(content)
+    safe_story_chapter = balance_single_quotes(story_chapter)
+    safe_title = balance_single_quotes(title)
+    safe_story_id = balance_single_quotes(story_id)
     sql_query = (
         f"INSERT INTO app_truyen_chapter (story_chapter, title, content, chapter_number, views, updated_at, story_id) "
-        f"VALUES ('{story_chapter}', '{title}', '{safe_content}', {chapter_number}, 0, NOW(), '{story_id}') "
+        f"VALUES ('{safe_story_chapter}', '{safe_title}', '{safe_content}', {chapter_number}, 0, NOW(), '{safe_story_id}') "
         f"ON CONFLICT (story_chapter) DO UPDATE SET title = EXCLUDED.title, content = EXCLUDED.content, updated_at = EXCLUDED.updated_at;"
     )
     with open(sql_file, "a", encoding="utf-8") as f:

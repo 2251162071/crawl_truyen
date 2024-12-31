@@ -1,0 +1,5 @@
+1. tai trang danh sach chuong tu dtruyen.net ve
+2. copy file html vao thu muc code
+3. chay get_links.py
+4. file txt duoc tao ra chua link chuong truyen, copy sang thu muc mottruyen
+5. chay file 2batch_crawl.py (trong moi truong ao)
