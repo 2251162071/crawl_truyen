@@ -1,1 +1,3 @@
 venv/*
+**/generated_links
+**/httrack_output/
