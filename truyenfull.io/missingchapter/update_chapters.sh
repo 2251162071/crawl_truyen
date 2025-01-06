@@ -4,7 +4,6 @@
 SQL_FILE="missingchapter.sql"
 
 # Đặt các biến khác cho thông tin kết nối
-PGPASSWORD="AVNS_DEdTlqbQ6a6cbgv-noq"
 USER="doadmin"
 HOST="truyenso-do-user-14364101-0.m.db.ondigitalocean.com"
 PORT="25060"
