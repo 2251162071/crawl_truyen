@@ -1,6 +1,7 @@
-import subprocess
-def crawl_data():
-    file_path = "van-co-than-de_5.txt"
+import subprocess, sys
+filename = sys.argv[1]
+def crawl_data(filename):
+    file_path = filename + ".txt"
     with open(file_path, "r") as file:
         links = file.read().strip().splitlines()
     
@@ -15,5 +16,5 @@ def crawl_data():
                 error_file.write(f"Error crawling link '{link}': {e}\n")
 
 if __name__ == "__main__":
-    crawl_data()
+    crawl_data(filename)
     print("Done!")

@@ -4,6 +4,8 @@
 baseName="$1"
 maxChuong="$2"
 
+# Delete httrack_output
+rm -rf "httrack_output"
 # Kiểm tra tham số
 if [[ -z "$baseName" || -z "$maxChuong" ]]; then
     echo "Thiếu tham số đầu vào." >> error.log
@@ -16,7 +18,7 @@ if ! [[ "$maxChuong" =~ ^[0-9]+$ ]] || [ "$maxChuong" -le 0 ]; then
 fi
 
 # Tạo baseUrl từ baseName
-baseUrl="https://truyenfull.tv/${baseName}/chuong-"
+baseUrl="https://truyenfull.io/${baseName}/chuong-"
 
 # Tên file đầu ra
 outputFile="${baseName}_${maxChuong}.txt"
@@ -28,7 +30,7 @@ fi
 
 # Tạo danh sách link
 for ((i=1; i<=maxChuong; i++)); do
-    echo "${baseUrl}${i}.html/" >> "$outputFile"
+    echo "${baseUrl}${i}/" >> "$outputFile"
 done
 
 echo "Danh sách link đã được lưu vào $outputFile"
