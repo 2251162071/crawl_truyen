@@ -3,6 +3,5 @@ venv/*
 **/httrack_output/
 **/*.txt
 **/*.sql
-**/update_chapters.sh
 **/error.log
 **/db_config.env
