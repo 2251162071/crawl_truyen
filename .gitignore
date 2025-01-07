@@ -1,5 +1,8 @@
 venv/*
 **/generated_links
 **/httrack_output/
-*.txt
-*.sql
+**/*.txt
+**/*.sql
+**/update_chapters.sh
+**/error.log
+**/db_config.env
