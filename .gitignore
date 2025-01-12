@@ -1,6 +1,6 @@
 venv/*
 **/generated_links
-**/httrack_output/
+**/httrack_output*/
 **/*.txt
 **/*.sql
 **/error.log
