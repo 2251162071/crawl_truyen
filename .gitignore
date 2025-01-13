@@ -6,3 +6,4 @@ venv/*
 **/error.log
 **/db_config.env
 !requirements.txt
+!data/**
