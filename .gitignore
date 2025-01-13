@@ -5,3 +5,4 @@ venv/*
 **/*.sql
 **/error.log
 **/db_config.env
+!requirements.txt
