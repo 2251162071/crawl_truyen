@@ -1,7 +1,7 @@
 import subprocess
 import psycopg2
 import logging
-import os, re, sys
+import os, re, sys, shutil
 import subprocess
 from bs4 import BeautifulSoup
 import requests
@@ -241,6 +241,9 @@ def crawl_truyen(url, output_dir="truyen_info"):
         url (str): URL của truyện cần tải.
         output_dir (str): Thư mục lưu nội dung tải về.
     """
+    if os.path.exists(output_dir) and os.path.isdir(output_dir):
+        shutil.rmtree(output_dir)
+        print(f"Đã xóa thư mục: {output_dir}")
     try:
         # Tạo thư mục lưu trữ nếu chưa tồn tại
         os.makedirs(output_dir, exist_ok=True)

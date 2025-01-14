@@ -8,12 +8,17 @@ def process_truyen(root_dir, sql_file):
         if os.path.isdir(subdir_path):
             # Kiểm tra nếu thư mục con chứa 'truyenfull.io'
             truyenfull_path = os.path.join(subdir_path, "truyenfull.io")
+            print(truyenfull_path)
             if os.path.exists(truyenfull_path) and os.path.isdir(truyenfull_path):
                 truyen_title = os.listdir(truyenfull_path)[0] 
+                print(truyen_title)
                 for dirpath, _, files in os.walk(truyenfull_path):
+                    print('test1')
                     for file in files:
+                        print('test2')
                         if file == "index.html":
                             index_path = os.path.join(dirpath, file)
+                            print(index_path)
                             try:
                                 with open(index_path, "r", encoding="utf-8", errors='ignore') as html_file:
                                     soup = BeautifulSoup(html_file, "html.parser")
@@ -21,11 +26,12 @@ def process_truyen(root_dir, sql_file):
                                     # Lấy title, số chương, và nội dung
                                     chapter_title_element = soup.find('h2')
                                     if not chapter_title_element:
-                                        # print("Chapter title not found")
+                                        print("Chapter title not found")
                                         continue
                                     chapter_title = chapter_title_element.find('a', class_='chapter-title')
                                     chapter_title = chapter_title.get_text(strip=True) if chapter_title else "Untitled Chapter"
                                     chapter_title = re.sub(r"Chương(\d+)", r"Chương \1", chapter_title)
+                                    print(chapter_title)
 
                                     # Sử dụng regex để tìm số sau chữ "Chương"
                                     match = re.search(r"Chương\s*(\d+)", chapter_title)
@@ -36,11 +42,14 @@ def process_truyen(root_dir, sql_file):
                                         chapter_number = 0
 
                                     chapter_content = soup.find(class_="chapter-c")
+                                    print('chapter content')
                                     # content = chapter_content.get_text(separator='\n', strip=True) if chapter_content else ""
                                     story_id = truyen_title
                                     story_chapter = re.sub(r"_chuong-", "_", subdir)
+                                    print(story_chapter)
 
                                     if chapter_title and chapter_content and chapter_number != 0:
+                                        print('save')
                                         save_to_sql(sql_file, story_chapter, chapter_title, chapter_number, chapter_content, story_id)
                             except Exception as e:
                                 print(f"Lỗi khi xử lý file {index_path}: {e}")
