@@ -1,14 +1,13 @@
 import os
 import re, sys
 from bs4 import BeautifulSoup
-filename = sys.argv[1]
 # Hàm để lặp qua các thư mục con của 'tien-nghich', tìm thư mục 'truyenfull.io', và xử lý file index.html
 def process_truyen(root_dir, sql_file):
     for subdir in os.listdir(root_dir):
         subdir_path = os.path.join(root_dir, subdir)
         if os.path.isdir(subdir_path):
             # Kiểm tra nếu thư mục con chứa 'truyenfull.io'
-            truyenfull_path = os.path.join(subdir_path, "truyenfull.tv")
+            truyenfull_path = os.path.join(subdir_path, "truyenfull.io")
             if os.path.exists(truyenfull_path) and os.path.isdir(truyenfull_path):
                 truyen_title = os.listdir(truyenfull_path)[0] 
                 for dirpath, _, files in os.walk(truyenfull_path):
@@ -90,7 +89,7 @@ if __name__ == "__main__":
     root_directory = os.path.join(os.path.dirname(os.path.abspath(__file__)), "httrack_output")
     print(root_directory)
     # File để lưu câu lệnh SQL
-    sql_file_path = filename + ".sql"
+    sql_file_path = "missingchapter.sql"
 
     # Xóa file nếu đã tồn tại để tránh trùng lặp nội dung
     if os.path.exists(sql_file_path):

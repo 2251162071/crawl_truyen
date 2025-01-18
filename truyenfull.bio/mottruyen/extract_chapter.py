@@ -8,9 +8,8 @@ def process_truyen(root_dir, sql_file):
         subdir_path = os.path.join(root_dir, subdir)
         if os.path.isdir(subdir_path):
             # Kiểm tra nếu thư mục con chứa 'truyenfull.io'
-            truyenfull_path = os.path.join(subdir_path, "truyenfull.tv")
+            truyenfull_path = os.path.join(subdir_path, "truyenfull.io")
             if os.path.exists(truyenfull_path) and os.path.isdir(truyenfull_path):
-                truyen_title = os.listdir(truyenfull_path)[0] 
                 for dirpath, _, files in os.walk(truyenfull_path):
                     for file in files:
                         if file == "index.html":
@@ -38,7 +37,7 @@ def process_truyen(root_dir, sql_file):
 
                                     chapter_content = soup.find(class_="chapter-c")
                                     # content = chapter_content.get_text(separator='\n', strip=True) if chapter_content else ""
-                                    story_id = truyen_title
+                                    story_id = ''
                                     story_chapter = re.sub(r"_chuong-", "_", subdir)
 
                                     if chapter_title and chapter_content and chapter_number != 0:
