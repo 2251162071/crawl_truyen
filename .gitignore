@@ -1,13 +1,10 @@
 venv/*
 **/generated_links
-<<<<<<< HEAD
 **/httrack_output/
 **/httrack_output*/
 **/truyen_info/
 **/missingchapter/
-=======
 **/httrack_output*/
->>>>>>> 61b542f1668524db88b15d3406fbaa4a42c07871
 **/*.txt
 **/*.sql
 **/error.log

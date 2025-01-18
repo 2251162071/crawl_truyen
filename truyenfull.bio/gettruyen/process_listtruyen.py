@@ -14,7 +14,7 @@ logging.basicConfig(
 )
 
 CRAWL_URL = "truyenfull.bio"
-IS_UPDATE = True   # Cập nhật truyện đã tồn tại
+IS_UPDATE = False   # Cập nhật truyện đã tồn tại
 
 # Hàm kiểm tra sự tồn tại của truyện
 def check_story_exists(story_name, cursor):
