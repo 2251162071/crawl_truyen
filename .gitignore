@@ -1,6 +1,9 @@
 venv/*
 **/generated_links
 **/httrack_output/
+**/httrack_output*/
+**/truyen_info/
+**/missingchapter/
 **/*.txt
 **/*.sql
 **/error.log
